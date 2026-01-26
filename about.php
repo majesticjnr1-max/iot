@@ -90,3 +90,7 @@ include 'components/nav.php';
 
     </div><!-- /.container -->
 </section>
+<?php
+include 'components/footer.php';
+
+?>

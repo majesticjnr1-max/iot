@@ -46,7 +46,7 @@
                 <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Contact us</a></li>
             </ul>
-        </div><!-- /.container -->
+        </div>
     </div> -->
 </footer>
  
