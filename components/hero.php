@@ -82,7 +82,8 @@
                     data-splitin="none"
                     data-splitout="none"
                     data-responsive_offset="on"
-                    style="z-index: 5; white-space: nowrap;">We Are Materialize
+                    style="z-index: 5; white-space: nowrap;">We are IoTHubers!
+
                 </div>
 
                 <!-- LAYER NR. 6 -->
@@ -100,7 +101,8 @@
                     data-splitin="none"
                     data-splitout="none"
                     data-responsive_offset="on"
-                    style="z-index: 6; white-space: nowrap;">Materialize is an interactive agency. Which develops websites <br> and premium mobile applications.
+                    style="z-index: 6; white-space: nowrap;"> We are the Community of the Future!
+
                 </div>
 
                 <!-- LAYER NR. 7 -->
@@ -121,7 +123,7 @@
                     data-splitout="none"
                     data-responsive_offset="on"
                     style="z-index: 7; white-space: nowrap;">
-                    <a href="#" class="btn btn-lg  waves-effect waves-light">Explore More</a>
+                    <a href="#" class="btn btn-lg  waves-effect waves-light">JOIN US</a>
                 </div>
 
 
@@ -223,7 +225,8 @@
                     data-splitin="none"
                     data-splitout="none"
                     data-responsive_offset="on"
-                    style="z-index: 5; white-space: nowrap;">We Build Brands
+                    style="z-index: 5; white-space: nowrap;">We are Innovators.
+
                 </div>
 
                 <!-- LAYER NR. 6 -->
@@ -241,7 +244,8 @@
                     data-splitin="none"
                     data-splitout="none"
                     data-responsive_offset="on"
-                    style="z-index: 6; white-space: nowrap;">Materialize is an interactive agency. Which develops websites <br> and premium mobile applications.
+                    style="z-index: 6; white-space: nowrap;"> We are the Community of the Future!
+
                 </div>
 
                 <!-- LAYER NR. 7 -->
@@ -262,7 +266,7 @@
                     data-splitout="none"
                     data-responsive_offset="on"
                     style="z-index: 7; white-space: nowrap;">
-                    <a href="#" class="btn btn-lg  waves-effect waves-light">Explore More</a>
+                    <a href="#" class="btn btn-lg  waves-effect waves-light">JOIN US</a>
                 </div>
 
 

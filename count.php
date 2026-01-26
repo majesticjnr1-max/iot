@@ -9,26 +9,26 @@ include 'components/nav.php';
                   <div class="row text-center">
                       <div class="col-sm-3 counter-wrap">
                         <i class="material-icons brand-color">&#xE90F;</i>
-                        <span class="timer">545</span>
-                        <span class="count-description">Project run</span>
+                        <span class="timer">47</span>
+                        <span class="count-description">PROJECT RUN</span>
                       </div> <!-- /.col-sm-3 -->
 
                       <div class="col-sm-3 counter-wrap">
                         <i class="material-icons brand-color">&#xE863;</i>
-                        <span class="timer">535</span>
-                        <span class="count-description">Ideas</span>
+                        <span class="timer">18455</span>
+                        <span class="count-description">IMPACT</span>
                       </div><!-- /.col-sm-3 -->
 
                       <div class="col-sm-3 counter-wrap">
                         <i class="material-icons brand-color">&#xE8F8;</i>
-                        <span class="timer">1544</span>
-                        <span class="count-description">Experiments</span>
+                        <span class="timer">46136</span>
+                        <span class="count-description">MEMBERS</span>
                       </div><!-- /.col-sm-3 -->
 
                       <div class="col-sm-3 counter-wrap">
                         <i class="material-icons brand-color">&#xE87E;</i>
-                        <span class="timer">111</span>
-                        <span class="count-description">success</span>
+                        <span class="timer">4614</span>
+                        <span class="count-description">PEOPLE TRAINED</span>
                       </div><!-- /.col-sm-3 -->
                   </div>
               </div><!-- /.container -->

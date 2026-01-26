@@ -13,10 +13,12 @@ include 'components/nav.php';
             <div class="portfolio-container text-center">
                 <ul class="portfolio-filter brand-filter">
                     <li class="active waves-effect waves-light" data-group="all">All</li>
-                    <li class=" waves-effect waves-light" data-group="websites">Websites</li>
-                    <li class=" waves-effect waves-light" data-group="branding">Branding</li>
-                    <li class=" waves-effect waves-light" data-group="marketing">Marketing</li>
-                    <li class=" waves-effect waves-light" data-group="photography">Photography</li>
+                    <li class=" waves-effect waves-light" data-group="websites">IoT Meetup</li>
+                    <li class=" waves-effect waves-light" data-group="branding">Outreach</li>
+                    <li class=" waves-effect waves-light" data-group="marketing">Exhibitions</li>
+                    <li class=" waves-effect waves-light" data-group="photography">R&D</li>
+                    <li class=" waves-effect waves-light" data-group="photography">Training</li>
+                    <li class=" waves-effect waves-light" data-group="photography">IoT Brand</li>
                 </ul>
 
 
