@@ -7,8 +7,8 @@ include 'components/nav.php';
     <div class="container">
 
         <div class="text-center mb-80">
-            <h2 class="section-title text-uppercase">Awesome clients</h2>
-            <p class="section-sub">Quisque non erat mi. Etiam congue et augue sed tempus. Aenean sed ipsum luctus, scelerisque ipsum nec, iaculis justo. Sed at vestibulum purus, sit amet viverra diam. Nulla ac nisi rhoncus,</p>
+            <h2 class="section-title text-uppercase">AWESOME PARTNERS</h2>
+            <p class="section-sub">Through strategic partnerships and collaboration with governments, private sector organizations, and communities, IoT Network Hub fosters an innovative culture and leverages emerging technologies to address Africa's wicked problems, driving economic growth, social progress, and environmental sustainability across the continent.</p>
         </div>
 
         <div class="clients-grid gutter">
@@ -49,8 +49,3 @@ include 'components/nav.php';
 
     </div><!-- /.container -->
 </section>
-
-<?php
-include 'components/footer.php';
-
-?>

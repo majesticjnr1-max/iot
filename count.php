@@ -33,8 +33,3 @@ include 'components/nav.php';
                   </div>
               </div><!-- /.container -->
         </section>
-
-        <?php
-include 'components/footer.php';
-
-?>

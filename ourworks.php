@@ -5,8 +5,8 @@ include 'components/nav.php';
  
  <section class="section-padding">
               <div class="text-center mb-50">
-                  <h2 class="section-title">Works</h2>
-                  <p class="section-sub">Quisque non erat mi. Etiam congue et augue sed tempus. Aenean sed ipsum luctus, scelerisque ipsum nec, iaculis justo. Sed at vestibulum purus, ipsum nec iaculis justo.</p>
+                  <h2 class="section-title">Our Works</h2>
+                  <p class="section-sub">We are paving the way for a new era of growth and prosperity on the continent, by providing training, mentorship, and support to young Africans in STEM fields. IoT Network Hub is empowering the next generation of leaders to drive innovation and change, with a focus on inclusivity, innovation, integrity, creativity, and teamwork, IoT Network Hub is at the forefront of a movement to transform Africa into a hub of technological progress and economic growth.</p>
               </div>
 
 
@@ -286,6 +286,9 @@ include 'components/nav.php';
         </section>
 
         <?php
+include 'opinions.php';
+include 'count.php';
+include 'partners.php';
 include 'components/footer.php';
 
 ?>
