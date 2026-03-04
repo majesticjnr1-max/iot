@@ -44,16 +44,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($_POST['action'] === 'update') {
             $memberId = $_POST['id'] ?? null;
             $name = $_POST['name'] ?? '';
+            $position = $_POST['position'] ?? '';
             $photo = $_POST['photo'] ?? null;
+            $facebook = $_POST['facebook'] ?? null;
+            $instagram = $_POST['instagram'] ?? null;
+            $twitter = $_POST['twitter'] ?? null;
+            $linkedin = $_POST['linkedin'] ?? null;
 
-            if ($memberId) {
-                $result = $team->update($memberId, $name, $photo);
+            if ($memberId && !empty($name) && !empty($position)) {
+                $result = $team->update($memberId, $name, $position, $photo, $facebook, $instagram, $twitter, $linkedin);
                 if ($result) {
                     $message = 'Team member updated successfully!';
                 } else {
                     $error = 'Failed to update team member';
                 }
                 $action = 'list';
+            } else {
+                $error = 'Name and position are required';
             }
         } elseif ($_POST['action'] === 'delete') {
             $memberId = $_POST['id'] ?? null;
@@ -189,6 +196,12 @@ if ($action === 'edit' && $teamId) {
             font-size: 14px;
         }
         
+        .logout-btn:hover {
+            background-color: #e53e3e;
+            text-decoration: none;
+            color: white;
+        }
+        
         .content-card {
             background: white;
             border-radius: 10px;
@@ -231,8 +244,8 @@ if ($action === 'edit' && $teamId) {
         }
         
         .btn-secondary {
-            background-color: #e2e8f0;
-            color: #4a5568;
+            background-color: #edf2f7;
+            color: #333;
         }
         
         .btn-sm {
@@ -336,6 +349,7 @@ if ($action === 'edit' && $teamId) {
             .main-content {
                 margin-left: 0;
             }
+            table {display:block;overflow-x:auto;}
         }
     </style>
 </head>
@@ -372,6 +386,7 @@ if ($action === 'edit' && $teamId) {
                 <a href="../admin-logout.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
             
+            <!-- Messages -->
             <!-- Messages -->
             <?php if ($message): ?>
                 <div class="alert alert-success"><i class="fas fa-check-circle"></i> <?php echo htmlspecialchars($message); ?></div>
@@ -499,7 +514,7 @@ if ($action === 'edit' && $teamId) {
                     <a href="team.php" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Team</a>
                     <h2><i class="fas fa-edit"></i> Edit Team Member</h2>
                     
-                    <form method="POST" style="max-width: 500px; margin-top: 20px;">
+                    <form method="POST" style="max-width: 600px; margin-top: 20px;">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?php echo $currentMember['id']; ?>">
                         
@@ -509,8 +524,34 @@ if ($action === 'edit' && $teamId) {
                         </div>
                         
                         <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" id="position" name="position" value="<?php echo htmlspecialchars($currentMember['position'] ?? ''); ?>" required>
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="photo">Photo URL</label>
                             <input type="text" id="photo" name="photo" value="<?php echo htmlspecialchars($currentMember['photo'] ?? ''); ?>">
+                        </div>
+                        
+                        <h4>Social Media Links</h4>
+                        <div class="form-group">
+                            <label for="facebook">Facebook</label>
+                            <input type="url" id="facebook" name="facebook" value="<?php echo htmlspecialchars($currentMember['facebook'] ?? ''); ?>" placeholder="https://facebook.com/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="instagram">Instagram</label>
+                            <input type="url" id="instagram" name="instagram" value="<?php echo htmlspecialchars($currentMember['instagram'] ?? ''); ?>" placeholder="https://instagram.com/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="url" id="twitter" name="twitter" value="<?php echo htmlspecialchars($currentMember['twitter'] ?? ''); ?>" placeholder="https://twitter.com/...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin" value="<?php echo htmlspecialchars($currentMember['linkedin'] ?? ''); ?>" placeholder="https://linkedin.com/...">
                         </div>
                         
                         <div style="display: flex; gap: 10px;">

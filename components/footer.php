@@ -140,5 +140,4 @@
 <script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
 
 </body>
-
 </html>

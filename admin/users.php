@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_POST['action'] === 'create') {
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
-            $roleId = $_POST['role_id'] ?? null;
+            $roleId = isset($_POST['role_id']) && $_POST['role_id'] !== '' ? intval($_POST['role_id']) : null;
 
             if (!empty($username) && !empty($password)) {
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } elseif ($_POST['action'] === 'update') {
             $userId = $_POST['user_id'] ?? null;
-            $roleId = $_POST['role_id'] ?? null;
+            $roleId = isset($_POST['role_id']) && $_POST['role_id'] !== '' ? intval($_POST['role_id']) : null;
             $newPassword = $_POST['password'] ?? '';
 
             if ($userId) {

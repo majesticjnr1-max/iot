@@ -315,12 +315,40 @@ function adminHeader($pageTitle, $activePage = 'index') {
             
             .main-content {
                 margin-left: 0;
+                padding: 15px;
             }
             
             .page-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
+            }
+
+            /* make tables horizontally scrollable on small screens */
+            table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* reduce padding on content cards */
+            .content-card {
+                padding: 15px;
+            }
+
+            /* full width form inputs */
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* stack action buttons vertically */
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
             }
         }
     </style>

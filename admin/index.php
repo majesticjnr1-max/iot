@@ -289,9 +289,30 @@ try {
             .sidebar {
                 width: 100%;
                 height: auto;
-                position: relative;
+                position: fixed;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1001;
             }
-            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            /* overlay when sidebar open */
+            .sidebar-backdrop {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.4);
+                z-index: 1000;
+            }
+            .sidebar-backdrop.hidden { display: none; }
+
             .main-content {
                 margin-left: 0;
             }
@@ -299,11 +320,23 @@ try {
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* show toggle button in navbar */
+            .menu-toggle {
+                display: inline-block;
+                font-size: 24px;
+                cursor: pointer;
+                margin-right: 15px;
+                color: #333;
+            }
         }
+        
     </style>
 </head>
 <body>
     <div class="admin-container">
+        <!-- Sidebar backdrop -->
+        <div id="sidebarBackdrop" class="sidebar-backdrop hidden" onclick="toggleSidebar()"></div>
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
@@ -331,7 +364,8 @@ try {
         <div class="main-content">
             <!-- Top Navbar -->
             <div class="top-navbar">
-                <h2 style="margin: 0; color: #333;">Dashboard</h2>
+                <span class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
+            <h2 style="margin: 0; color: #333;">Dashboard</h2>
                 <div class="user-info">
                     <div>
                         <p style="margin: 0; color: #666; font-size: 12px;">Welcome back</p>
@@ -374,6 +408,27 @@ try {
                     <div class="stat-label">Partners</div>
                     <div class="stat-number"><?php echo $totalPartners; ?></div>
                 </div>
+                <!-- count metrics cards -->
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-label">Project Run</div>
+                    <div class="stat-number"><?php echo htmlspecialchars($countInfo['count_project'] ?? 0); ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="stat-label">Impact</div>
+                    <div class="stat-number"><?php echo htmlspecialchars($countInfo['count_impact'] ?? 0); ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-label">Members</div>
+                    <div class="stat-number"><?php echo htmlspecialchars($countInfo['count_member'] ?? 0); ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-label">Trainees</div>
+                    <div class="stat-number"><?php echo htmlspecialchars($countInfo['count_trainees'] ?? 0); ?></div>
+                </div>
             </div>
             
             <!-- Quick Actions -->
@@ -399,6 +454,10 @@ try {
                     <i class="fas fa-handshake"></i>
                     <strong>Add Partner</strong>
                 </a>
+                <a href="statistics.php?action=counts" class="action-btn">
+                    <i class="fas fa-plus"></i>
+                    <strong>Add Counts</strong>
+                </a>
                 <a href="statistics.php" class="action-btn">
                     <i class="fas fa-chart-bar"></i>
                     <strong>View Statistics</strong>
@@ -408,5 +467,18 @@ try {
     </div>
 
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            var backdrop = document.getElementById('sidebarBackdrop');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                backdrop.classList.add('hidden');
+            } else {
+                sidebar.classList.add('open');
+                backdrop.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>

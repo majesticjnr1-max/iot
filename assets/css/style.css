@@ -2281,3 +2281,41 @@ KEY FRAME
 
 
 
+
+
+/* Team member image sizing */
+.team-img {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.team-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive nav-tabs adjustments */
+@media (max-width: 767px) {
+  .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .nav-tabs > li {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  .nav-tabs > li > a {
+    border: 1px solid #ddd;
+    border-bottom: none;
+    margin-bottom: 5px;
+  }
+  .nav-tabs > li.active > a,
+  .nav-tabs > li > a:hover {
+    background-color: #f7fafc;
+  }
+}
+

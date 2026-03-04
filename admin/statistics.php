@@ -35,6 +35,37 @@ $partners = $partner->getAll();
 
 // Extract statistics
 $countInfo = $countData[0] ?? [];
+$message = '';
+$error = '';
+
+// handle form submission for count metrics
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_counts'])) {
+    $impact = intval($_POST['impact'] ?? 0);
+    $project = intval($_POST['project'] ?? 0);
+    $member = intval($_POST['member'] ?? 0);
+    $trainees = intval($_POST['trainees'] ?? 0);
+
+    if (!empty($countData) && isset($countData[0]['id'])) {
+        // update existing record
+        if ($count->update($countData[0]['id'], $impact, $project, $member, $trainees)) {
+            $message = 'Counts updated successfully.';
+        } else {
+            $error = 'Failed to update counts.';
+        }
+    } else {
+        // create new record
+        if ($count->addCount($impact, $project, $member, $trainees)) {
+            $message = 'Counts added successfully.';
+        } else {
+            $error = 'Failed to add counts.';
+        }
+    }
+
+    // refresh data
+    $countData = $count->getAll();
+    $countInfo = $countData[0] ?? [];
+}
+
 $stats = [
     'users' => count($users),
     'team' => count($teamMembers),
@@ -43,12 +74,12 @@ $stats = [
     'partners' => count($partners),
 ];
 
-// Additional count statistics
+// Additional count statistics (align with model columns)
 $statsCount = [
-    'projects' => $countInfo['projects'] ?? 0,
-    'happy_clients' => $countInfo['happy_clients'] ?? 0,
-    'complete_solutions' => $countInfo['complete_solutions'] ?? 0,
-    'team_experts' => $countInfo['team_experts'] ?? 0,
+    'project_run' => $countInfo['count_project'] ?? 0,
+    'impact' => $countInfo['count_impact'] ?? 0,
+    'members' => $countInfo['count_member'] ?? 0,
+    'trainees' => $countInfo['count_trainees'] ?? 0,
 ];
 
 ?>
@@ -350,25 +381,54 @@ $statsCount = [
                 </div>
             </div>
             
-            <!-- Detailed Statistics -->
+            <!-- Detailed Statistics & Counter Edit Form -->
             <div class="content-card">
                 <h3 class="section-title"><i class="fas fa-info-circle"></i> Portal Statistics</h3>
+                <?php if (!empty($message)): ?>
+                    <div class="alert alert-success"><?php echo htmlspecialchars($message); ?></div>
+                <?php endif; ?>
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
+                <?php endif; ?>
+                <form method="post" class="row g-3 mb-4">
+                    <input type="hidden" name="update_counts" value="1">
+                    <div class="col-md-3">
+                        <label class="form-label">Project Run</label>
+                        <input type="number" name="project" class="form-control" value="<?php echo htmlspecialchars($countInfo['count_project'] ?? 0); ?>">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Impact</label>
+                        <input type="number" name="impact" class="form-control" value="<?php echo htmlspecialchars($countInfo['count_impact'] ?? 0); ?>">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Members</label>
+                        <input type="number" name="member" class="form-control" value="<?php echo htmlspecialchars($countInfo['count_member'] ?? 0); ?>">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Trainees</label>
+                        <input type="number" name="trainees" class="form-control" value="<?php echo htmlspecialchars($countInfo['count_trainees'] ?? 0); ?>">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Save Counters</button>
+                    </div>
+                </form>
+
                 <ul class="detail-list">
                     <li>
-                        <span class="detail-label"><i class="fas fa-project-diagram"></i> Projects Count</span>
-                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['projects'] ?? 0); ?></span>
+                        <span class="detail-label"><i class="fas fa-project-diagram"></i> Project Run</span>
+                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['project_run'] ?? 0); ?></span>
                     </li>
                     <li>
-                        <span class="detail-label"><i class="fas fa-smile"></i> Happy Clients</span>
-                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['happy_clients'] ?? 0); ?></span>
+                        <span class="detail-label"><i class="fas fa-heartbeat"></i> Impact</span>
+                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['impact'] ?? 0); ?></span>
                     </li>
                     <li>
-                        <span class="detail-label"><i class="fas fa-check-circle"></i> Complete Solutions</span>
-                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['complete_solutions'] ?? 0); ?></span>
+                        <span class="detail-label"><i class="fas fa-users"></i> Members</span>
+                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['members'] ?? 0); ?></span>
                     </li>
                     <li>
-                        <span class="detail-label"><i class="fas fa-star"></i> Team Experts</span>
-                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['team_experts'] ?? 0); ?></span>
+                        <span class="detail-label"><i class="fas fa-user-graduate"></i> Trainees</span>
+                        <span class="detail-value"><?php echo htmlspecialchars($statsCount['trainees'] ?? 0); ?></span>
                     </li>
                 </ul>
             </div>
