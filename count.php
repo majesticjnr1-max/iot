@@ -1,7 +1,11 @@
- <?php
-session_start();
+<?php
+// enable output buffering so headers can still be sent even if some output
+// (whitespace, notices, etc.) sneaks in before session_start
+ob_start();
+
 include 'components/header.php';
 include 'components/nav.php';
+
 
 // include necessary classes for counts
 require_once __DIR__ . '/config/app.php';

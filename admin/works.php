@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         if ($_POST['action'] === 'create') {
             $title = $_POST['title'] ?? '';
-            $photoUrl = $_POST['photo_url'] ?? null;
+            $photo = $_POST['photo'] ?? null;
 
             if (!empty($title)) {
-                $result = $work->create($title, $photoUrl);
+                $result = $work->create($title, $photo);
                 if ($result) {
                     $message = 'Work created successfully!';
                     $action = 'list';
@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($_POST['action'] === 'update') {
             $id = $_POST['id'] ?? null;
             $title = $_POST['title'] ?? '';
-            $photoUrl = $_POST['photo_url'] ?? null;
+            $photo = $_POST['photo'] ?? null;
 
             if ($id) {
-                $result = $work->update($id, $title, $photoUrl);
+                $result = $work->update($id, $title, $photo);
                 if ($result) {
                     $message = 'Work updated successfully!';
                 } else {
@@ -108,8 +108,8 @@ adminHeader('Works', 'works');
                                     <td><?php echo htmlspecialchars($w['id']); ?></td>
                                     <td><?php echo htmlspecialchars($w['work_title']); ?></td>
                                     <td>
-                                        <?php if (!empty($w['photo_url'])): ?>
-                                            <img src="<?php echo htmlspecialchars($w['photo_url']); ?>" alt="<?php echo htmlspecialchars($w['title']); ?>" style="max-width: 80px; height: auto;">
+                                        <?php if (!empty($w['photo'])): ?>
+                                            <img src="<?php echo htmlspecialchars($w['photo'], ENT_QUOTES); ?>" alt="<?php echo htmlspecialchars($w['work_title'], ENT_QUOTES); ?>" style="max-width: 80px; height: auto;">
                                         <?php else: ?>
                                             <span style="color: #999;">No image</span>
                                         <?php endif; ?>
@@ -142,12 +142,12 @@ adminHeader('Works', 'works');
                         
                         <div class="form-group">
                             <label for="title">Title <span style="color: red;">*</span></label>
-                            <input type="text" id="title" name="title" required>
+                            <input type="text" id="title" name="title" required="required">
                         </div>
                         
                         <div class="form-group">
-                            <label for="photo_url">Photo URL</label>
-                            <input type="url" id="photo_url" name="photo_url">
+                            <label for="photo">Photo (URL)</label>
+                            <input type="url" id="photo" name="photo">
                         </div>
                         
                         <div style="display: flex; gap: 10px;">
@@ -166,12 +166,12 @@ adminHeader('Works', 'works');
                         
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($currentWork['title']); ?>" required>
+                            <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($currentWork['work_title'] ?? '', ENT_QUOTES); ?>" required="required">
                         </div>
                         
                         <div class="form-group">
-                            <label for="photo_url">Photo URL</label>
-                            <input type="url" id="photo_url" name="photo_url" value="<?php echo htmlspecialchars($currentWork['photo_url'] ?? ''); ?>">
+                            <label for="photo">Photo (URL)</label>
+                            <input type="url" id="photo" name="photo" value="<?php echo htmlspecialchars($currentWork['photo'] ?? ''); ?>">
                         </div>
                         
                         <div style="display: flex; gap: 10px;">

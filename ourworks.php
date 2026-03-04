@@ -50,10 +50,10 @@ $viewData = $view->getListData($allWorks);
                                 <div class="portfolio-wrapper">
                                     <div class="thumb">
                                         <div class="bg-overlay brand-overlay"></div>
-                                        <img src="<?php echo htmlspecialchars($work['photo_url'] ?? 'assets/img/portfolio/default.jpg'); ?>" alt="<?php echo htmlspecialchars($work['title'] ?? 'Work'); ?>">
+                                        <img src="<?php echo htmlspecialchars($work['photo'] ?? 'assets/img/portfolio/default.jpg'); ?>" alt="<?php echo htmlspecialchars($work['work_title'] ?? 'Work'); ?>">
                                         <div class="portfolio-intro">
                                             <div class="action-btn">
-                                                <a href="<?php echo htmlspecialchars($work['photo_url'] ?? '#'); ?>" class="tt-lightbox" title="<?php echo htmlspecialchars($work['title'] ?? ''); ?>"><i class="fa fa-search"></i></a>
+                                                <a href="<?php echo htmlspecialchars($work['photo'] ?? '#'); ?>" class="tt-lightbox" title="<?php echo htmlspecialchars($work['work_title'] ?? ''); ?>"><i class="fa fa-search"></i></a>
                                             </div>
                                             <h2><a href="#"><?php echo htmlspecialchars($work['work_title'] ?? 'Untitled'); ?></a></h2>
                                             <?php if (!empty($work['category'])): ?>

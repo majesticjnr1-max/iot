@@ -472,7 +472,7 @@ $statsCount = [
                         </li>
                         <li>
                             <span class="detail-label">With Photos</span>
-                            <span class="detail-value"><?php echo count(array_filter($works, fn($w) => !empty($w['photo_url']))); ?></span>
+                            <span class="detail-value"><?php echo count(array_filter($works, fn($w) => !empty($w['photo']))); ?></span>
                         </li>
                     </ul>
                 </div>

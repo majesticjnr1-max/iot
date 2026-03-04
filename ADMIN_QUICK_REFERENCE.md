@@ -146,7 +146,7 @@ id: record_id
 |-------|----------|-----------|
 | USERS | user_id | user_name, role_id |
 | TEAM | id | name, position |
-| OUR_WORK | id | title, photo_url |
+| OUR_WORK | id | work_title, photo |
 | OUR_PROJECT | id | title, description |
 | PARTNER | id | name |
 | ROLES | role_id | role_name |
