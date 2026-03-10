@@ -18,30 +18,37 @@ $error = '';
 $action = $_GET['action'] ?? 'list';
 $teamId = $_GET['id'] ?? null;
 
-// Helper function to handle file uploads: save to disk and return web-accessible path
-function handleFileUpload($fieldName) {
+// Helper function to handle file uploads
+function handleFileUpload($fieldName, $uploadDir = '../uploads/team/') {
     if (!isset($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] === UPLOAD_ERR_NO_FILE) {
         return null;
     }
-    $file = $_FILES[$fieldName];
-    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    if (!in_array($ext, $allowed)) {
-        throw new Exception('Invalid file type. Only images allowed.');
-    }
-    if ($file['size'] > 5242880) { // 5MB limit
-        throw new Exception('File size exceeds 5MB limit.');
-    }
-    $uploadDir = __DIR__ . '/../uploads/team';
+    
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
-    $filename = uniqid() . '.' . $ext;
-    $destination = $uploadDir . '/' . $filename;
-    if (!move_uploaded_file($file['tmp_name'], $destination)) {
-        throw new Exception('Failed to move uploaded file.');
+    
+    $file = $_FILES[$fieldName];
+    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    
+    if (!in_array($ext, $allowed)) {
+        throw new Exception('Invalid file type. Only images allowed.');
     }
-    return '/uploads/team/' . $filename;
+    
+    if ($file['size'] > 5242880) { // 5MB limit
+        throw new Exception('File size exceeds 5MB limit.');
+    }
+    
+    $filename = uniqid() . '.' . $ext;
+    $filepath = $uploadDir . $filename;
+    
+    if (!move_uploaded_file($file['tmp_name'], $filepath)) {
+        throw new Exception('Failed to upload file.');
+    }
+    
+    // Return path relative to the root directory (not admin directory)
+    return 'uploads/team/' . $filename;
 }
 
 // Handle form submission
