@@ -36,7 +36,14 @@ $viewData = $view->getListData($allTeam);
                         <div class="col-md-4 col-sm-6">
                             <div class="team-wrapper">
                                 <div class="team-img">
-                                    <a href="#"><img src="<?php echo htmlspecialchars($member['photo'] ?? 'assets/img/team/default.jpg'); ?>" class="img-responsive" alt="<?php echo htmlspecialchars($member['name'] ?? 'Team Member'); ?>"></a>
+                                    <?php 
+                                        $photoSrc = $member['photo'] ?? 'assets/img/team/default.jpg';
+                                        // If path starts with /, prepend /iot/ since app is at /iot/
+                                        if (!empty($photoSrc) && strpos($photoSrc, '/') === 0 && strpos($photoSrc, '/iot/') !== 0 && strpos($photoSrc, 'data:') !== 0) {
+                                            $photoSrc = '/iot' . $photoSrc;
+                                        }
+                                    ?>
+                                    <a href="#"><img src="<?php echo htmlspecialchars($photoSrc); ?>" class="img-responsive" alt="<?php echo htmlspecialchars($member['name'] ?? 'Team Member'); ?>"></a>
                                 </div><!-- /.team-img -->
 
                                 <div class="team-title">

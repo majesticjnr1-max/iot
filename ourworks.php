@@ -50,10 +50,23 @@ $viewData = $view->getListData($allWorks);
                                 <div class="portfolio-wrapper">
                                     <div class="thumb">
                                         <div class="bg-overlay brand-overlay"></div>
-                                        <img src="<?php echo htmlspecialchars($work['photo'] ?? 'assets/img/portfolio/default.jpg'); ?>" alt="<?php echo htmlspecialchars($work['work_title'] ?? 'Work'); ?>">
+                                        <?php 
+                                            $photoSrc = $work['photo'] ?? 'assets/img/portfolio/default.jpg';
+                                            // If path starts with /, prepend /iot/ since app is at /iot/
+                                            if (!empty($photoSrc) && strpos($photoSrc, '/') === 0 && strpos($photoSrc, '/iot/') !== 0 && strpos($photoSrc, 'data:') !== 0) {
+                                                $photoSrc = '/iot' . $photoSrc;
+                                            }
+                                        ?>
+                                        <img src="<?php echo htmlspecialchars($photoSrc); ?>" alt="<?php echo htmlspecialchars($work['work_title'] ?? 'Work'); ?>">
                                         <div class="portfolio-intro">
                                             <div class="action-btn">
-                                                <a href="<?php echo htmlspecialchars($work['photo'] ?? '#'); ?>" class="tt-lightbox" title="<?php echo htmlspecialchars($work['work_title'] ?? ''); ?>"><i class="fa fa-search"></i></a>
+                                                <?php 
+                                                    $lightboxSrc = $work['photo'] ?? '#';
+                                                    if (!empty($lightboxSrc) && strpos($lightboxSrc, '/') === 0 && strpos($lightboxSrc, '/iot/') !== 0 && strpos($lightboxSrc, 'data:') !== 0) {
+                                                        $lightboxSrc = '/iot' . $lightboxSrc;
+                                                    }
+                                                ?>
+                                                <a href="<?php echo htmlspecialchars($lightboxSrc); ?>" class="tt-lightbox" title="<?php echo htmlspecialchars($work['work_title'] ?? ''); ?>"><i class="fa fa-search"></i></a>
                                             </div>
                                             <h2><a href="#"><?php echo htmlspecialchars($work['work_title'] ?? 'Untitled'); ?></a></h2>
                                             <?php if (!empty($work['category'])): ?>

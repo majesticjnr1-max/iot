@@ -37,7 +37,14 @@ $viewData = $view->getListData($allPartners);
                         <div class="col-md-3 col-sm-6">
                             <div class="border-box">
                                 <a href="<?php echo htmlspecialchars($partner['partner_website'] ?? '#'); ?>">
-                                    <img src="<?php echo htmlspecialchars($partner['partner_logo'] ?? 'assets/img/client-logo/default.png'); ?>" alt="<?php echo htmlspecialchars($partner['partner_name'] ?? 'Partner'); ?>">
+                                    <?php 
+                                        $logoSrc = $partner['partner_logo'] ?? 'assets/img/client-logo/default.png';
+                                        // If path starts with /, prepend /iot/ since app is at /iot/
+                                        if (!empty($logoSrc) && strpos($logoSrc, '/') === 0 && strpos($logoSrc, '/iot/') !== 0 && strpos($logoSrc, 'data:') !== 0) {
+                                            $logoSrc = '/iot' . $logoSrc;
+                                        }
+                                    ?>
+                                    <img src="<?php echo htmlspecialchars($logoSrc); ?>" alt="<?php echo htmlspecialchars($partner['partner_name'] ?? 'Partner'); ?>">
                                 </a>
                             </div><!-- /.border-box -->
                         </div><!-- /.col-md-3 -->

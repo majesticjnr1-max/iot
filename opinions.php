@@ -12,9 +12,9 @@ $testimonies = getTestimoniesData();
         <div class="thumb-carousel circle-thumb text-center">
           <ul class="slides">
             <?php foreach ($testimonies as $t): ?>
-            <li data-thumb="<?php echo htmlspecialchars($t['picture']); ?>">
+            <li data-thumb="<?php echo htmlspecialchars($t['avatar']); ?>">
               <div class="icon">
-                <img src="<?php echo htmlspecialchars($t['picture']); ?>" alt="Customer Thumb" class="opinion-thumb">
+                <img src="<?php echo htmlspecialchars($t['avatar']); ?>" alt="Customer Thumb" class="opinion-thumb" style="border-radius: 50%;">
               </div>
               <div class="content">
                 <p><?php echo htmlspecialchars($t['message']); ?></p>

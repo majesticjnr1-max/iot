@@ -41,7 +41,7 @@ function handleFileUpload($fieldName) {
     if (!move_uploaded_file($file['tmp_name'], $destination)) {
         throw new Exception('Failed to move uploaded file.');
     }
-    return '/uploads/works/' . $filename;
+    return '/iot/uploads/works/' . $filename;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

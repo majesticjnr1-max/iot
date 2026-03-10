@@ -48,7 +48,7 @@ function handleFileUpload($fieldName, $uploadDir = '../uploads/team/') {
     }
     
     // Return path relative to the root directory (not admin directory)
-    return 'uploads/team/' . $filename;
+    return '/iot/uploads/team/' . $filename;
 }
 
 // Handle form submission
@@ -143,6 +143,7 @@ if ($action === 'edit' && $teamId) {
     <title>Manage Team - Admin Portal</title>
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="../assets/img/icons/IoT.png" type="image/x-icon">
     <style>
         :root {
             --primary: #667eea;
@@ -423,6 +424,7 @@ if ($action === 'edit' && $teamId) {
                 <li><a href="roles.php"><i class="fas fa-user-tag"></i> Roles</a></li>
                 <li><a href="privileges.php"><i class="fas fa-shield-alt"></i> Privileges</a></li>
                 <li><a href="statistics.php"><i class="fas fa-chart-bar"></i> Statistics</a></li>
+                <li><a href="testimonies.php"><i class="fas fa-comment-dots"></i> Testimonies</a></li>
                 <li style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
                     <a href="../admin-logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>

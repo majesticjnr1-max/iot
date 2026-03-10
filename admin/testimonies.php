@@ -41,7 +41,7 @@ function handleFileUpload($fieldName) {
     if (!move_uploaded_file($file['tmp_name'], $destination)) {
         throw new Exception('Failed to move uploaded file.');
     }
-    return '/uploads/testimonies/' . $filename;
+    return '/iot/uploads/testimonies/' . $filename;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -242,7 +242,7 @@ adminHeader('Testimonies', 'testimonies');
                 <label for="avatar">Avatar</label>
                 <?php if (!empty($currentTestimony['avatar'])): ?>
                     <div style="margin-bottom: 10px;">
-                        <img src="<?php echo htmlspecialchars($currentTestimony['avatar']); ?>" alt="Current avatar" style="max-width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+                        <img src="<?php echo htmlspecialchars($currentTestimony['avatar']); ?>" alt="Current avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
                         <p style="font-size: 12px; color: #666;">Current avatar</p>
                     </div>
                 <?php endif; ?>
