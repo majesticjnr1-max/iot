@@ -25,12 +25,10 @@ class OurWorkController
             $title = $_POST['title'];
             $photo = null;
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'uploads/works/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-                $photo = $uploadDir . basename($_FILES['photo']['name']);
-                move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
+                $tmp = $_FILES['photo']['tmp_name'];
+                $data = file_get_contents($tmp);
+                $type = mime_content_type($tmp) ?: 'application/octet-stream';
+                $photo = 'data:' . $type . ';base64,' . base64_encode($data);
             }
             if ($this->model->create($title, $photo)) {
                 header('Location: /ourwork');
@@ -58,12 +56,10 @@ class OurWorkController
             $title = $_POST['title'];
             $photo = $_POST['existing_photo'] ?? null;
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'uploads/works/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-                $photo = $uploadDir . basename($_FILES['photo']['name']);
-                move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
+                $tmp = $_FILES['photo']['tmp_name'];
+                $data = file_get_contents($tmp);
+                $type = mime_content_type($tmp) ?: 'application/octet-stream';
+                $photo = 'data:' . $type . ';base64,' . base64_encode($data);
             }
             if ($this->model->update($id, $title, $photo)) {
                 header('Location: /ourwork');

@@ -26,12 +26,10 @@ class PartnerController
             $website = $_POST['website'] ?? null;
             $logo = null;
             if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'uploads/partners/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-                $logo = $uploadDir . basename($_FILES['logo']['name']);
-                move_uploaded_file($_FILES['logo']['tmp_name'], $logo);
+                $tmp = $_FILES['logo']['tmp_name'];
+                $data = file_get_contents($tmp);
+                $type = mime_content_type($tmp) ?: 'application/octet-stream';
+                $logo = 'data:' . $type . ';base64,' . base64_encode($data);
             }
             if ($this->model->create($name, $logo, $website)) {
                 header('Location: /partner');
@@ -60,12 +58,10 @@ class PartnerController
             $website = $_POST['website'] ?? null;
             $logo = $_POST['existing_logo'] ?? null;
             if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'uploads/partners/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-                $logo = $uploadDir . basename($_FILES['logo']['name']);
-                move_uploaded_file($_FILES['logo']['tmp_name'], $logo);
+                $tmp = $_FILES['logo']['tmp_name'];
+                $data = file_get_contents($tmp);
+                $type = mime_content_type($tmp) ?: 'application/octet-stream';
+                $logo = 'data:' . $type . ';base64,' . base64_encode($data);
             }
             if ($this->model->update($id, $name, $logo, $website)) {
                 header('Location: /partner');

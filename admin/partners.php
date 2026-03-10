@@ -18,36 +18,24 @@ $error = '';
 $action = $_GET['action'] ?? 'list';
 $partnerId = $_GET['id'] ?? null;
 
-// Helper function to handle file uploads
-function handleFileUpload($fieldName, $uploadDir = '../uploads/partners/') {
+// Helper function to handle file uploads: convert image to base64 data URI
+function handleFileUpload($fieldName) {
     if (!isset($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] === UPLOAD_ERR_NO_FILE) {
         return null;
     }
-    
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
-    
     $file = $_FILES[$fieldName];
     $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    
     if (!in_array($ext, $allowed)) {
         throw new Exception('Invalid file type. Only images allowed.');
     }
-    
     if ($file['size'] > 5242880) { // 5MB limit
         throw new Exception('File size exceeds 5MB limit.');
     }
-    
-    $filename = uniqid() . '.' . $ext;
-    $filepath = $uploadDir . $filename;
-    
-    if (!move_uploaded_file($file['tmp_name'], $filepath)) {
-        throw new Exception('Failed to upload file.');
-    }
-    
-    return $filepath;
+    $tmp = $file['tmp_name'];
+    $data = file_get_contents($tmp);
+    $type = mime_content_type($tmp) ?: 'application/octet-stream';
+    return 'data:' . $type . ';base64,' . base64_encode($data);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
