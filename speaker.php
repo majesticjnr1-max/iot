@@ -14,6 +14,10 @@ include 'components/nav.php';
                         <a href="#" class="btn pink btn-lg waves-effect waves-light"> JOIN US</a>
                     </div>
 
+                     <div class="col-md-5">
+                      <img style="width: 100%; height: auto;" src="assets/img/bg/mac-spkr.png" class="img-responsive " alt="Image">
+                     </div>
+
                 </div>
             </div>
         </section>

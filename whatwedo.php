@@ -85,7 +85,7 @@ include 'components/nav.php';
                   </div>
 
                   <div class="col-md-5">
-                      <img src="assets/img/jo.jpeg" class="img-responsive " alt="Image">
+                      <img src="assets/img/bg/founders.png" class="img-responsive " alt="Image">
                   </div>
               </div>
 

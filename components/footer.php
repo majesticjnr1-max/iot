@@ -10,17 +10,16 @@
 
 
              <div class="footer-logo">
-                        <img src="assets/img/logo-white.png" alt="">
+                        <img style="width: 100px; height: auto;" src="assets/img/icons/IoT.png" alt="IoT logo">
                     </div>
 
             <ul class="social-link tt-animate ltr mt-20">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                <li><a href="https://web.facebook.com/iotnetworkhub"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/iotnetworkhub"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/iot-network-hub/"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://instagram.com/iotnetworkhub"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://t.me/+FcLVc_WLUkdjNTE0"><i class="fa fa-tumblr"></i></a></li>
+                <li><a href="https://www.youtube.com/@iotnetworkhub"><i class="fa fa-youtube"></i></a></li>
             </ul>
 
             <div class="row">

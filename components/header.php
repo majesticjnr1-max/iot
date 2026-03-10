@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IoT Network Hub</title>
+    <title>IoT Network Hub - Akwaaba(Welcome home)</title>
 
     <!--  favicon -->
-    <link rel="shortcut icon" href="assets/img/ico/favicon.png">
+    <link rel="shortcut icon" href="assets/img/icons/IoT.png" type="image/x-icon">
     <!--  apple-touch-icon -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/img/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/img/ico/apple-touch-icon-114-precomposed.png">

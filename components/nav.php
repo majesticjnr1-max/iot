@@ -13,7 +13,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
                 <!--logo start-->
                 <a href="index.html" class="logo-brand">
-                    <img class="retina" src="assets/img/logo.png" alt="" />
+                    <img class="retina" src="assets/img/icons/IoT.png" alt="IoT logo" />
                 </a>
                 <!--logo end-->
 
