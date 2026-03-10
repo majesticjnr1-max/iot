@@ -26,10 +26,19 @@ class PartnerController
             $website = $_POST['website'] ?? null;
             $logo = null;
             if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                $tmp = $_FILES['logo']['tmp_name'];
-                $data = file_get_contents($tmp);
-                $type = mime_content_type($tmp) ?: 'application/octet-stream';
-                $logo = 'data:' . $type . ';base64,' . base64_encode($data);
+                $ext = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+                $allowed = ['jpg','jpeg','png','gif','webp'];
+                if (in_array($ext, $allowed)) {
+                    $uploadDir = __DIR__ . '/../../uploads/partners';
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0755, true);
+                    }
+                    $filename = uniqid() . '.' . $ext;
+                    $dest = $uploadDir . '/' . $filename;
+                    if (move_uploaded_file($_FILES['logo']['tmp_name'], $dest)) {
+                        $logo = '/uploads/partners/' . $filename;
+                    }
+                }
             }
             if ($this->model->create($name, $logo, $website)) {
                 header('Location: /partner');
@@ -58,10 +67,19 @@ class PartnerController
             $website = $_POST['website'] ?? null;
             $logo = $_POST['existing_logo'] ?? null;
             if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-                $tmp = $_FILES['logo']['tmp_name'];
-                $data = file_get_contents($tmp);
-                $type = mime_content_type($tmp) ?: 'application/octet-stream';
-                $logo = 'data:' . $type . ';base64,' . base64_encode($data);
+                $ext = strtolower(pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION));
+                $allowed = ['jpg','jpeg','png','gif','webp'];
+                if (in_array($ext, $allowed)) {
+                    $uploadDir = __DIR__ . '/../../uploads/partners';
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0755, true);
+                    }
+                    $filename = uniqid() . '.' . $ext;
+                    $dest = $uploadDir . '/' . $filename;
+                    if (move_uploaded_file($_FILES['logo']['tmp_name'], $dest)) {
+                        $logo = '/uploads/partners/' . $filename;
+                    }
+                }
             }
             if ($this->model->update($id, $name, $logo, $website)) {
                 header('Location: /partner');

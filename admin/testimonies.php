@@ -18,7 +18,7 @@ $error = '';
 $action = $_GET['action'] ?? 'list';
 $testimonyId = $_GET['id'] ?? null;
 
-// Helper function to handle file uploads: encode image to base64
+// Helper function to handle file uploads: save to disk and return path
 function handleFileUpload($fieldName) {
     if (!isset($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] === UPLOAD_ERR_NO_FILE) {
         return null;
@@ -32,10 +32,16 @@ function handleFileUpload($fieldName) {
     if ($file['size'] > 5242880) { // 5MB limit
         throw new Exception('File size exceeds 5MB limit.');
     }
-    $tmp = $file['tmp_name'];
-    $data = file_get_contents($tmp);
-    $type = mime_content_type($tmp) ?: 'application/octet-stream';
-    return 'data:' . $type . ';base64,' . base64_encode($data);
+    $uploadDir = __DIR__ . '/../uploads/testimonies';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+    $filename = uniqid() . '.' . $ext;
+    $destination = $uploadDir . '/' . $filename;
+    if (!move_uploaded_file($file['tmp_name'], $destination)) {
+        throw new Exception('Failed to move uploaded file.');
+    }
+    return '/uploads/testimonies/' . $filename;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
