@@ -98,6 +98,7 @@ include 'components/nav.php';
 -->
 
         <?php
+        include 'initiatives.php';
 include 'components/footer.php';
 
 ?>

@@ -1,5 +1,4 @@
 <?php
-include 'components/header.php';
 include 'components/nav.php';
 ?>
 
@@ -77,6 +76,5 @@ include 'components/nav.php';
         </section>
 
         <?php
-include 'components/footer.php';
 
 ?>

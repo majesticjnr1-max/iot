@@ -7,7 +7,7 @@ include 'components/nav.php';
             <div class="container">
 
               <div class="text-center mb-80">
-                  <h2 class="section-title text-uppercase">What We Do</h2>
+    
                   <p class="section-sub">On our quest to exploring emerging and exponential technologies to impact 1 billion young Africans, working with our partners we have initiated a number of innovative projects and campaigns to develop an enabling environment for everyone</p>
               </div>
 
@@ -121,6 +121,5 @@ include 'components/nav.php';
 
         <?php
      include 'quotes.php';
-     include 'components/footer.php';
 
 ?>

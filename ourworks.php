@@ -83,6 +83,7 @@ $viewData = $view->getListData($allWorks);
 include 'opinions.php';
 include 'count.php';
 include 'partners.php';
+include 'progressbar.php';
 include 'components/footer.php';
 
 ?>

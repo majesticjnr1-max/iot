@@ -30,18 +30,23 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <li class="<?php echo ($currentPage == 'whatwedo.php') ? 'active' : ''; ?>">
                         <a href="/iot/whatwedo">What We Do</a>
                     </li>
-
+                    
+                    <!--
                     <li class="<?php echo ($currentPage == 'initiatives.php') ? 'active' : ''; ?>">
-                        <a href="/iot/initiatives">Initiatives</a>
+                       <a href="/iot/initiatives">Initiatives</a>
                     </li>
-
+                    -->
+                    
+                    
                     <li class="<?php echo ($currentPage == 'ourworks.php') ? 'active' : ''; ?>">
                         <a href="/iot/ourworks">Portfolio</a>
                     </li>
-
+                    
+                    <!--
                     <li class="<?php echo ($currentPage == 'progressbar.php') ? 'active' : ''; ?>">
                         <a href="/iot/progressbar">Focus Area</a>
                     </li>
+                    -->
 
                     <li class="<?php echo ($currentPage == 'ourteam.php') ? 'active' : ''; ?>">
                         <a href="/iot/ourteam">Team</a>
