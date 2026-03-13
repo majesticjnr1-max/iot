@@ -67,6 +67,15 @@ CREATE TABLE COUNT (
     count_trainees INT DEFAULT 0
 );
 
+CREATE TABLE testimonies (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    picture VARCHAR(255) DEFAULT NULL,
+    message TEXT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    position VARCHAR(100) DEFAULT NULL,
+    avatar VARCHAR(255) DEFAULT NULL
+);
+
 -- Insert default roles
 INSERT INTO ROLES (role_name, role_description) VALUES
 ('Admin', 'Full administrative access'),
